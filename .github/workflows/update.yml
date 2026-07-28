@@ -76,8 +76,6 @@ jobs:
             package.nix
             flake.lock
           commit-message: "chore: update Bast to version ${{ steps.check.outputs.new_version }}"
-          committer: 'Kevin Pita <gitkevin@pm.me>'
-          author: 'Kevin Pita <gitkevin@pm.me>'
           title: "chore: update Bast to version ${{ steps.check.outputs.new_version }}"
           body: |
             ## Update Bast
@@ -102,7 +100,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
-        run: gh pr merge "$PR_NUMBER" --auto --squash --delete-branch --author-email gitkevin@pm.me
+        run: gh pr merge "$PR_NUMBER" --auto --squash --delete-branch
 
       - name: Summary
         if: always()
