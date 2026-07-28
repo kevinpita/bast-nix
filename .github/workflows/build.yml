@@ -1,0 +1,38 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+        with:
+          determinate: false
+          github-token: ''
+          extra-conf: |
+            experimental-features = nix-command flakes
+
+      - name: Build Bast
+        run: nix build .#bast --print-build-logs
+
+      - name: Check Bast version
+        run: test "$(./result/bin/bast --version)" = "bast v$(sed -n 's/.*version = "\([^"]*\)".*/\1/p' package.nix | head -1)"
+
+      - name: Verify package contents
+        run: test -x ./result/bin/bast
