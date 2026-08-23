@@ -8,13 +8,13 @@
 
 buildGoModule (finalAttrs: {
   pname = "bast";
-  version = "0.9.1";
+  version = "0.9.2";
 
   src = fetchFromGitHub {
     owner = "ellipse-software";
     repo = "bast";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-emyF9dyFZISG62o7rMu+e97Dam+ZHhmXOcb8WGNzrM0=";
+    hash = "sha256-DR9Vd2nGnwpdwGVc6TpRgglYQn2bjvN4DKj8qgkb2FY=";
   };
 
   modRoot = "apps/bast";
