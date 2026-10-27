@@ -8,17 +8,17 @@
 
 buildGoModule (finalAttrs: {
   pname = "bast";
-  version = "0.10.3";
+  version = "0.11.0";
 
   src = fetchFromGitHub {
     owner = "ellipse-software";
     repo = "bast";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-5ODLRbAuKwFCNqTOT65edf22Ddj7CKURlVS714jQFn4=";
+    hash = "sha256-S7hKt1WvTVY0jZM9h5GHs1Xh7oeJq6aJCcOtuXgzTso=";
   };
 
   modRoot = "apps/bast";
-  vendorHash = "sha256-XVkj0RyoQrjuII+fpPPyh/mhvki/oqzRD1It6vjA+gA=";
+  vendorHash = "sha256-fZ7NDQ7/RYwMI/v2I+j8CI6/OAigUegxCZ5fozcpxU4=";
 
   env.CGO_ENABLED = 0;
 
